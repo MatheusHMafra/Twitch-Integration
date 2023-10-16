@@ -1,15 +1,28 @@
+/*
+Elementos
+*/
 const countElement = document.getElementById('counts');
 const usersElement = document.getElementById('users');
 const chat = document.getElementById('chat');
 const statusElement = document.getElementById('status');
+const streamerElement = document.getElementById('streamer');
+const mainElement = document.getElementById('main');
+const channelElement = document.getElementById("channel");
 
+/*
+Configurações
+
+- Emotes e Badges estão em outro arquivo
+(Arquivo: js/array.js)
+- Variáveis
+- Configurações gerais
+*/
 var listeningForCount = true;
 var users = {};
-
 const config = {
     maximo: 20,
-    maximoPessoas: 75,
-}
+    maximoPessoas: 50,
+};
 
 /*
 - Canal alternativo caso
@@ -18,14 +31,31 @@ const config = {
 */
 var altchannel = 'felps'
 // Pegar o canal a partir da url
-var channel = window.location.pathname.split('/')[1] || altchannel;
-if (channel == 'index.html') channel = altchannel;
+var channel;
 
-if (!channel) {
-    console.error('Erro ao pegar o canal');
+// Pegar o canal a partir do input com id channel
+document.getElementById("botao").addEventListener("click", function () {
+    channel = channelElement.value;
+    if (channel == '') {
+        channel = altchannel;
+    }
+    window.location.href = `index.html?channel=${channel}`;
+});
+// E/ou pegar o canal a partir da url
+if (window.location.href.includes('?channel=')) {
+    channel = window.location.href.split('?channel=')[1];
+    // Mostrar quem é o streamer e mostrar o chat
+    streamerElement.innerHTML = `Streamer: ${channel}`;
+    streamerElement.style.display = 'block';
+    mainElement.style.display = 'block';
 }
 
-document.getElementById('streamer').innerHTML = `Streamer: ${channel}`;
+if (!channel) {
+    console.error('Nenhum canal foi selecionado ou encontrado');
+    statusElement.style.display = 'none';
+    document.getElementById('labelChannel').remove();
+    document.getElementById('legendChannel').style.display = 'block';
+}
 
 // Conectar ao chat
 const client = new tmi.Client({
@@ -46,21 +76,25 @@ client.connect().then(() => {
 });
 
 client.on('message', (channel, tags, message, self) => {
-    // Ignore echoed messages.
+    // Ignora mensagens de si mesmo
     if (self) return;
-    const { username } = tags;
+
+    // Resultado final
     var resultado = '';
 
     // Adicionar icones de mod, sub, vip, etc junto com a mensagem
     if (tags.badges) {
         resultado += gerarBadge(tags.badges);
     }
+
     // Adicionar emotes junto com a mensagem
     var mensagem = transformMessage(getMessageHTML(message, tags));
+
     // Adicionar mensagem
     resultado += `
     <h3 style="color: ${tags.color};">
         ${tags['display-name']}: ${mensagem}</h3>`;
+
     // Adicionar resultado na div
     const div = document.createElement('div');
     div.innerHTML = resultado;
@@ -70,20 +104,37 @@ client.on('message', (channel, tags, message, self) => {
         chat.removeChild(chat.firstChild);
     }
 
+    // Se chegar ao número máximo de usuários no elemento, remover os mais antigos
+    if (usersElement.childElementCount >= config.maximoPessoas) {
+        usersElement.removeChild(usersElement.firstElementChild);
+    }
+
+    // Adicionar mensagem no chat
     chat.appendChild(div);
 
+    // Listar usuários unicos
     if (listeningForCount) {
         users[tags.username] = true;
-        // display current count page.
-        countElement.innerHTML = `Pessoas únicas: ${Object.keys(users).length}`;
-        // display current users.
-        usersElement.innerHTML = `<h3>${Object.keys(users).join(", ")}</h3>`;
-        if (usersElement.childElementCount >= config.maximo) {
+        // Mostrar pessoas únicas
+        countElement.innerHTML = `Pessoas: ${Object.keys(users).length}`;
+        // Mostrar quantidade de pessoas
+        usersElement.innerHTML = `${Object.keys(users).join(', ')}`;
+
+        if (Object.keys(users).length >= config.maximoPessoas) {
             listeningForCount = false;
         }
     }
 });
 
+/*
+Funções
+
+- getMessageHTML: Transforma a mensagem caso tenha emotes da twitch
+- transformMessage: Transforma a mensagem caso tenha emotes no array emotes
+- gerarBadge: Gera as badges
+*/
+
+//---------------------------------------------------------------\\
 function getMessageHTML(message, { emotes }) {
     if (!emotes) return message;
 
@@ -120,6 +171,7 @@ function getMessageHTML(message, { emotes }) {
     return messageHTML;
 }
 
+//---------------------------------------------------------------\\
 function transformMessage(message) {
     var resultado = '';
     var mensagem = message.split(' ');
@@ -134,21 +186,19 @@ function transformMessage(message) {
     return resultado;
 }
 
+//---------------------------------------------------------------\\
 function gerarBadge(badge) {
     var resultado = '';
     for (const key in badge) {
-        // Verificar o mês do sub
         if (key == 'subscriber') {
             if (badge[key] == '0') {
-                resultado += `<img src="${badgesSubscribers[0]}" width="20px" height="20px">`;
-            } else {
-                resultado += `<img src="${badgesSubscribers[badge[key]]}" width="20px" height="20px">`;
+                resultado += `<img src="${badgesSubscribers[0]}" alt="${badgesSubscribers[0]}" width="20px" height="20px">`;
+            } else if (badgesSubscribers[badge[key]]) {
+                resultado += `<img src="${badgesSubscribers[badge[key]]}" alt="${badgesSubscribers[badge[key]]}" width="20px" height="20px">`;
             }
-        }
-        else if (badge.hasOwnProperty(key)) {
-            const element = badge[key];
-            if (element == '1') {
-                resultado += `<img src="${badges[key]}" width="20px" height="20px">`;
+        } else if (badge.hasOwnProperty(key) && badges.hasOwnProperty(key) && badge[key] === '1') {
+            if (badges[key]) {
+                resultado += `<img src="${badges[key]}" alt="${badges[key]}" width="20px" height="20px">`;
             }
         }
     }

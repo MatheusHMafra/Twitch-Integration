@@ -46,6 +46,8 @@ body {
     float: left;
     width: 50%;
     height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #chat div {

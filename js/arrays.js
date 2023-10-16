@@ -34,7 +34,6 @@ const badges = {
     no_video: 'https://static-cdn.jtvnw.net/badges/v1/199a0dba-58f3-494e-a7fc-1fa0a1001fb8/2',
     no_audio: 'https://static-cdn.jtvnw.net/badges/v1/aef2cd08-f29b-45a1-8c12-d44d7fd5e6f0/2',
 };
-"subscriber/2,rplace-2023/1"
 
 const badgesSubscribers = {
     0: 'https://static-cdn.jtvnw.net/badges/v1/5d9f2208-5dd8-11e7-8513-2ff4adfae661/2', // version 0
