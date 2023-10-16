@@ -1,0 +1,82 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#status {
+    margin: 0px;
+    padding: 0px;
+}
+
+#counts {
+    margin: 0px;
+    padding: 0px;
+}
+
+#usersnchat {
+    margin: 0px 20px 0px 20px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#users {
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    width: 50%;
+    height: auto;
+}
+
+#title {
+    display: None;
+    margin: 0px;
+    padding: 0px;
+    float: right;
+    width: 50%;
+    height: auto;
+}
+
+#chat {
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    width: 50%;
+    height: auto;
+}
+
+#chat div {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chat h3 {
+    margin: 0.1px;
+    padding: 0px;
+    /*Botar um text shadow no texto*/
+    text-shadow: 0px 0px 5px rgb(255, 255, 255, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chat h3 img {
+    width: auto;
+    height: 30px;
+}
+
+#users p {
+    margin: 0.1px;
+    padding: 0px;
+}
+
+#chat img {
+    margin: 0px 2.5px 0px 2.5px;
+    padding: 0px;
+}
