@@ -11,7 +11,23 @@ const config = {
     maximoPessoas: 75,
 }
 
-const channel = 'tck10';
+/*
+- Canal alternativo caso
+- Não tenha canal na url
+- ou seja o index.html
+*/
+var altchannel = 'felps'
+// Pegar o canal a partir da url
+var channel = window.location.pathname.split('/')[1] || altchannel;
+if (channel == 'index.html') channel = altchannel;
+
+if (!channel) {
+    console.error('Erro ao pegar o canal');
+}
+
+document.getElementById('streamer').innerHTML = `Streamer: ${channel}`;
+
+// Conectar ao chat
 const client = new tmi.Client({
     connection: {
         secure: true,
