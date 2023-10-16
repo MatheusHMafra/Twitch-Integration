@@ -116,7 +116,7 @@ client.on('message', (channel, tags, message, self) => {
     if (listeningForCount) {
         users[tags.username] = true;
         // Mostrar pessoas únicas
-        countElement.innerHTML = `Pessoas: ${Object.keys(users).length}`;
+        countElement.innerHTML = `Pessoas únicas: ${Object.keys(users).length}`;
         // Mostrar quantidade de pessoas
         usersElement.innerHTML = `${Object.keys(users).join(', ')}`;
 
