@@ -17,7 +17,7 @@ Configurações
 - Variáveis
 - Configurações gerais
 */
-var listeningForCount = true;
+var listeningForCount = false;
 var users = {};
 const config = {
     maximo: 20,
@@ -78,6 +78,13 @@ client.connect().then(() => {
 client.on('message', (channel, tags, message, self) => {
     // Ignora mensagens de si mesmo
     if (self) return;
+
+    // Se for o dono do canal e ele mandar !count, mostrar quantas pessoas únicas tem no chat
+    if (tags.username === channel && message === '!count') {
+        listeningForCount = true;
+        users = {};
+        return;
+    }
 
     // Resultado final
     var resultado = '';
