@@ -1,6 +1,7 @@
 /*
 Elementos
 */
+const liveElement = document.getElementById('live');
 const countElement = document.getElementById('counts');
 const usersElement = document.getElementById('users');
 const chat = document.getElementById('chat');
@@ -43,11 +44,23 @@ document.getElementById("botao").addEventListener("click", function () {
 });
 // E/ou pegar o canal a partir da url
 if (window.location.href.includes('?channel=')) {
-    channel = window.location.href.split('?channel=')[1];
+    // Pegar o canal apenas apoós o ?channel= e nao pegar o resto da url
+    channel = window.location.href.split('?channel=')[1].split('&')[0];
     // Mostrar quem é o streamer e mostrar o chat
     streamerElement.innerHTML = `Streamer: ${channel}`;
     streamerElement.style.display = 'block';
     mainElement.style.display = 'block';
+
+    // Mostar a live do canal
+    liveElement.innerHTML = `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=matheushmafra.github.io" height="500px"
+    width="50%" frameborder="0"></iframe>`;
+}
+
+// Se tiver &count=false na url, não mostrar o contador de pessoas
+if (window.location.href.includes('&count=false')) {
+    countElement.remove();
+    usersElement.remove();
+    chat.style.width = '100%';
 }
 
 if (!channel) {
