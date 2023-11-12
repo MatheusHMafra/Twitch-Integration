@@ -21,7 +21,7 @@ Configurações
 var listeningForCount = false;
 var users = {};
 const config = {
-    maximo: 20,
+    maximo: 15,
     maximoPessoas: 50,
 };
 
