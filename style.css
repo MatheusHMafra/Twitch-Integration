@@ -5,6 +5,11 @@ body {
     text-align: center;
 }
 
+#streamer {
+    margin: 10px;
+    padding: 0px;
+}
+
 #status {
     margin: 0px;
     padding: 0px;
@@ -61,6 +66,8 @@ body {
 #chat h3 {
     margin: 0.1px;
     padding: 0px;
+    /*Diminuir o tamanho da fonte*/
+    font-size: 15px;
     /*Botar um text shadow no texto*/
     text-shadow: 0px 0px 5px rgb(255, 255, 255, 0.35);
     display: flex;

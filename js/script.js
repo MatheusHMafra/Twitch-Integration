@@ -10,6 +10,8 @@ const streamerElement = document.getElementById('streamer');
 const mainElement = document.getElementById('main');
 const channelElement = document.getElementById("channel");
 
+const selectChannel = document.getElementById('selectChannel');
+
 /*
 Configurações
 
@@ -50,6 +52,8 @@ if (window.location.href.includes('?channel=')) {
     streamerElement.innerHTML = `Streamer: ${channel}`;
     streamerElement.style.display = 'block';
     mainElement.style.display = 'block';
+
+    selectChannel.remove();
 
     // Mostar a live do canal
     liveElement.innerHTML = `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=matheushmafra.github.io" height="500px"
@@ -112,8 +116,8 @@ client.on('message', (channel, tags, message, self) => {
 
     // Adicionar mensagem
     resultado += `
-    <h3 style="color: ${tags.color};">
-        ${tags['display-name']}: ${mensagem}</h3>`;
+        <h3 style = "color: ${tags.color};">
+            ${tags['display-name']}: ${mensagem}</h3> `;
 
     // Adicionar resultado na div
     const div = document.createElement('div');
@@ -136,9 +140,9 @@ client.on('message', (channel, tags, message, self) => {
     if (listeningForCount) {
         users[tags.username] = true;
         // Mostrar pessoas únicas
-        countElement.innerHTML = `Pessoas únicas: ${Object.keys(users).length}`;
+        countElement.innerHTML = `Pessoas únicas: ${Object.keys(users).length} `;
         // Mostrar quantidade de pessoas
-        usersElement.innerHTML = `${Object.keys(users).join(', ')}`;
+        usersElement.innerHTML = `${Object.keys(users).join(', ')} `;
 
         if (Object.keys(users).length >= config.maximoPessoas) {
             listeningForCount = false;
@@ -175,7 +179,7 @@ function getMessageHTML(message, { emotes }) {
 
         stringReplacements.push({
             stringToReplace: stringToReplace,
-            replacement: `<img src="https://static-cdn.jtvnw.net/emoticons/v2/${id}/default/dark/1.0">`,
+            replacement: `<img src = "https://static-cdn.jtvnw.net/emoticons/v2/${id}/default/dark/1.0"> `,
         });
     });
 
@@ -197,7 +201,7 @@ function transformMessage(message) {
     var mensagem = message.split(' ');
     mensagem.forEach(element => {
         if (emotes[element]) {
-            resultado += `<img src="${emotes[element]}" width="20px" height="20px">`;
+            resultado += `<img src = "${emotes[element]}" width = "20px" height = "20px"> `;
         } else {
             resultado += element;
         }
@@ -212,13 +216,13 @@ function gerarBadge(badge) {
     for (const key in badge) {
         if (key == 'subscriber') {
             if (badge[key] == '0') {
-                resultado += `<img src="${badgesSubscribers[0]}" alt="${badgesSubscribers[0]}" width="20px" height="20px">`;
+                resultado += `<img src = "${badgesSubscribers[0]}" alt = "${badgesSubscribers[0]}" width = "20px" height = "20px"> `;
             } else if (badgesSubscribers[badge[key]]) {
-                resultado += `<img src="${badgesSubscribers[badge[key]]}" alt="${badgesSubscribers[badge[key]]}" width="20px" height="20px">`;
+                resultado += `<img src = "${badgesSubscribers[badge[key]]}" alt = "${badgesSubscribers[badge[key]]}" width = "20px" height = "20px"> `;
             }
         } else if (badge.hasOwnProperty(key) && badges.hasOwnProperty(key) && badge[key] === '1') {
             if (badges[key]) {
-                resultado += `<img src="${badges[key]}" alt="${badges[key]}" width="20px" height="20px">`;
+                resultado += `<img src = "${badges[key]}" alt = "${badges[key]}" width = "20px" height = "20px"> `;
             }
         }
     }
