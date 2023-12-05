@@ -1,7 +1,6 @@
 /*
 Elementos
 */
-const statusElement = document.getElementById('status');
 const liveElement = document.getElementById('lives');
 
 // Multi stream elements
