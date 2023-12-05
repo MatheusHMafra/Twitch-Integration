@@ -2,7 +2,7 @@
 Elementos
 */
 const statusElement = document.getElementById('status');
-const liveElement = document.getElementById('live');
+const liveElement = document.getElementById('lives');
 
 // Multi stream elements
 if (window.location.href.includes('?channel=')) {
