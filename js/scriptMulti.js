@@ -12,4 +12,6 @@ if (window.location.href.includes('?channel=')) {
         liveElement.innerHTML += `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=matheushmafra.github.io" height="500px"
         width="50%" frameborder="0"></iframe>`;
     }
+} else {
+    liveElement.innerHTML = `Canais devem ser adicionados na url, exemplo: ?channel=canal1&canal2`;
 }
