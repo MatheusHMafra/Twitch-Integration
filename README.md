@@ -16,6 +16,17 @@
 não pode ser localhost, é recomendado usar o [github pages](https://pages.github.com/) como hospedagem)
 3. Entre no seu site e pronto :D
 
+## Informações
+
+- O arquivo `arrays.js` contém os emojis customizados da BetterTTV e as badges da Twitch (modifique se quiser adicionar mais)
+- O arquivo `config.js` contém as configurações do site (você deve modificar)
+
+### Configurações do stream.html
+
+- Tem como adicionar `&noemotes` no link para não aparecer os emojis customizados da BetterTTV
+- Tem como adicionar `&nochat` no link para não aparecer o chat
+- Tem como adicionar `&count` no link para aparecer o contador de usuários unicos no chat
+
 ## Sobre
 
 Este site foi feito para testar o tmi.js.

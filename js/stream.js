@@ -40,16 +40,20 @@ if (!channel) {
 }
 
 // Se tiver &count=false na url, não mostrar o contador de pessoas
-if (window.location.href.includes('&count=false')) {
+if (!window.location.href.includes('&count')) {
     countElement.remove();
     usersElement.remove();
     chat.style.width = '100%';
 }
 
-if (window.location.href.includes('&chat=false')) {
+if (window.location.href.includes('&nochat')) {
     chat.remove();
     liveElement.style.width = '100%';
     liveElement.style.height = '100%';
+}
+
+if (window.location.href.includes('&noemotes')) {
+    emotes = {};
 }
 
 // Conectar ao chat
