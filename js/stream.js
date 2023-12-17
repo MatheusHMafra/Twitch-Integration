@@ -8,9 +8,6 @@ const chat = document.getElementById('chat');
 const statusElement = document.getElementById('status');
 const streamerElement = document.getElementById('streamer');
 const mainElement = document.getElementById('main');
-const channelElement = document.getElementById("channel");
-
-const selectChannel = document.getElementById('selectChannel');
 
 /*
 Configurações
@@ -27,37 +24,23 @@ const config = {
     maximoPessoas: 50,
 };
 
-/*
-- Canal alternativo caso
-- Não tenha canal na url
-- ou seja o index.html
-*/
-var altchannel = 'felps'
 // Pegar o canal a partir da url
 var channel;
 
-// Pegar o canal a partir do input com id channel
-document.getElementById("botao").addEventListener("click", function () {
-    channel = channelElement.value;
-    if (channel == '') {
-        channel = altchannel;
-    }
-    window.location.href = `index.html?channel=${channel}`;
-});
 // E/ou pegar o canal a partir da url
 if (window.location.href.includes('?channel=')) {
     // Pegar o canal apenas apoós o ?channel= e nao pegar o resto da url
     channel = window.location.href.split('?channel=')[1].split('&')[0];
     // Mostrar quem é o streamer e mostrar o chat
     streamerElement.innerHTML = `Streamer: ${channel}`;
-    streamerElement.style.display = 'block';
-    mainElement.style.display = 'block';
-
-    selectChannel.remove();
 
     // Mostar a live do canal
     liveElement.innerHTML = `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=matheushmafra.github.io" height="500px"
     width="50%" frameborder="0"></iframe>`;
+}
+
+if (!channel) {
+    mainElement.innerHTML = `Canal não encontrado`;
 }
 
 // Se tiver &count=false na url, não mostrar o contador de pessoas
@@ -67,11 +50,10 @@ if (window.location.href.includes('&count=false')) {
     chat.style.width = '100%';
 }
 
-if (!channel) {
-    console.error('Nenhum canal foi selecionado ou encontrado');
-    statusElement.style.display = 'none';
-    document.getElementById('labelChannel').remove();
-    document.getElementById('legendChannel').style.display = 'block';
+if (window.location.href.includes('&chat=false')) {
+    chat.remove();
+    liveElement.style.width = '100%';
+    liveElement.style.height = '100%';
 }
 
 // Conectar ao chat

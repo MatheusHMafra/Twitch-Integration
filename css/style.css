@@ -89,3 +89,13 @@ body {
     margin: 0px 2.5px 0px 2.5px;
     padding: 0px;
 }
+
+/* */
+#mensagemErro, #mensagemErroMulti {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff0000;
+}

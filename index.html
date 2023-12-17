@@ -4,44 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste integração com twitch</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Teste Twitch</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <h1 id="status">
-        Status: <span style="color: red;">Offline</span>
+    <h1>
+        Insira o canal
     </h1>
     <div id="selectChannel">
-        <legend id="legendChannel" style="display: none;">
-            <h2>
-                Insira o canal
-            </h2>
-        </legend>
-        <label id="labelChannel" for="channel">Insira o canal<br></label>
+        <p id="mensagemErro"></p>
         <input type="text" id="channel">
         <button id="botao">
             >>
         </button>
     </div>
-    <h3 style="display: none;" id="streamer">
-        Streamer:
-    </h3>
-    <div id="main" style="display: none;">
-        <div id="live"></div>
-        <br>
-        <h2 id="counts">
-            Esperando o streamer iniciar a contagem...
-        </h2>
-        <h3 id="title">Teste</h3>
-        <div id="usersnchat">
-            <h3 id="users"></h3>
-            <p id="chat"></p>
-        </div>
+    <br>
+    <div>
+        <h1>
+            Multi Stream
+        </h1>
+        <p>
+            Insira os canais separados por vírgula
+        </p>
+        <p>
+            Exemplo: canal1,canal2,canal3
+        </p>
+        <p>
+            OBS: 
+            <br>
+            Não coloque espaços
+            <br>
+            Não coloque mais de 4 canais <br>
+            (talvez trave o navegador!!)
+        </p>
+        <p id="mensagemErroMulti"></p>
+        <input type="text" id="multiChannels">
+        <button id="multiBotao">
+            >>
+        </button>
     </div>
-    <script src="js/tmi.min.js"></script>
-    <script src="js/arrays.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
