@@ -19,10 +19,6 @@ Configurações
 */
 var listeningForCount = false;
 var users = {};
-const config = {
-    maximo: 15,
-    maximoPessoas: 50,
-};
 
 // Pegar o canal a partir da url
 var channel;
@@ -35,7 +31,7 @@ if (window.location.href.includes('?channel=')) {
     streamerElement.innerHTML = `Streamer: ${channel}`;
 
     // Mostar a live do canal
-    liveElement.innerHTML = `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=matheushmafra.github.io" height="500px"
+    liveElement.innerHTML = `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=${config.link}" height="500px"
     width="50%" frameborder="0"></iframe>`;
 }
 

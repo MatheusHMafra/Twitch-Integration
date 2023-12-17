@@ -9,7 +9,7 @@ if (window.location.href.includes('?channel=')) {
     // Exemplo: ?channel=matheushmafra&channel=felps
     for (let channel of window.location.href.split('?channel=')[1].split('&')) {
         // Criar um iframe para cada canal
-        liveElement.innerHTML += `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=matheushmafra.github.io" height="500px"
+        liveElement.innerHTML += `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=${config.link}" height="500px"
         width="50%" frameborder="0"></iframe>`;
     }
 } else {
