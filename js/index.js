@@ -1,11 +1,13 @@
-/*
-- Canal alternativo caso
-- Não tenha canal na url
-- ou seja o index.html
-*/
-var channelElement = document.getElementById("channel");
-var channelError = document.getElementById("mensagemErro");
-var multiError = document.getElementById("mensagemErroMulti");
+// Elementos da página
+const channelElement = document.getElementById("channel");
+const multiChannelsElement = document.getElementById("multiChannels");
+
+// Inputs customizados
+const checkboxes = document.querySelectorAll("input[name=configs]");
+
+// Elementos de erro
+const channelError = document.getElementById("mensagemErro");
+const multiError = document.getElementById("mensagemErroMulti");
 
 // Pegar o canal a partir da url
 var channel;
@@ -17,13 +19,25 @@ document.getElementById("botao").addEventListener("click", function () {
         channelError.innerHTML = "Digite um canal (Não pode ser vazio)";
     } else {
         channelError.innerHTML = "";
-        window.location.href = `stream.html?channel=${channel}`;
+        // Inicialize a variável link
+        var link = "stream.html?channel=" + channel;
+
+        // Itere sobre os checkboxes para verificar o estado de seleção e atualizar a variável link
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                link += "&" + checkbox.id;
+            }
+        });
+
+        // Aqui, você pode usar a variável link conforme necessário (por exemplo, redirecionar para a nova URL)
+        console.log("Link final: " + link);
+        window.location.href = link;
     }
 });
 
 // Pegar os canais a partir do input com id multiChannels
 document.getElementById("multiBotao").addEventListener("click", function () {
-    var multiChannels = document.getElementById("multiChannels").value;
+    var multiChannels = multiChannelsElement.value;
     if (multiChannels == '') {
         multiError.innerHTML = "Digite um canal (Não pode ser vazio)";
     } else {

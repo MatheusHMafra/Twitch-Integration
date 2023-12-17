@@ -1,6 +1,7 @@
 /*
 Elementos
 */
+
 const liveElement = document.getElementById('live');
 const countElement = document.getElementById('counts');
 const usersElement = document.getElementById('users');
@@ -31,8 +32,8 @@ if (window.location.href.includes('?channel=')) {
     streamerElement.innerHTML = `Streamer: ${channel}`;
 
     // Mostar a live do canal
-    liveElement.innerHTML = `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=${config.link}" height="500px"
-    width="50%" frameborder="0"></iframe>`;
+    liveElement.innerHTML = `<iframe src="https://player.twitch.tv/?channel=${channel}&parent=${config.link}" height="600px"
+    width="60%" frameborder="0"></iframe>`;
 }
 
 if (!channel) {
@@ -48,8 +49,8 @@ if (!window.location.href.includes('&count')) {
 
 if (window.location.href.includes('&nochat')) {
     chat.remove();
-    liveElement.style.width = '100%';
-    liveElement.style.height = '100%';
+    document.querySelector('iframe').style.width = '70%';
+    document.querySelector('iframe').style.height = '700px';
 }
 
 if (window.location.href.includes('&noemotes')) {

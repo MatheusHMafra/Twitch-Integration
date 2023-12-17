@@ -91,7 +91,7 @@ body {
 }
 
 /* */
-#mensagemErro, #mensagemErroMulti {
+.error {
     margin: 0px;
     padding: 0px;
     display: flex;
@@ -100,8 +100,36 @@ body {
     color: #ff0000;
 }
 
+input[type=text] {
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    width: 40%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #000;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+}
+
+input[type=text]#multiChannels {
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    width: 50%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #000;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+}
+
 footer {
-    margin: 100px;
+    margin: 50px;
     padding: 0px;
     display: flex;
     align-items: center;

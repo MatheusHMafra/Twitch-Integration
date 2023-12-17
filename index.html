@@ -9,15 +9,20 @@
 </head>
 
 <body>
-    <h2>
-        Insira o canal
-    </h2>
     <div id="selectChannel">
-        <p id="mensagemErro"></p>
+        <h2>
+            Insira o canal
+        </h2>
+        <p class="erro" id="mensagemErro"></p>
         <input type="text" id="channel">
-        <button id="botao">
-            >>
-        </button>
+        <br>
+        <label for="nochat">Sem chat</label>
+        <input type="checkbox" name="configs" id="nochat">
+        <br>
+        <label for="noemotes">Sem emotes customizados</label>
+        <input type="checkbox" name="configs" id="noemotes">
+        <br><br>
+        <button id="botao"> >> </button>
     </div>
 
     <br>
@@ -33,18 +38,17 @@
             Exemplo: canal1,canal2,canal3
         </p>
         <p>
-            OBS: 
+            OBS:
             <br>
             Não coloque espaços
             <br>
             Não coloque mais de 4 canais <br>
             (talvez trave o navegador!!)
         </p>
-        <p id="mensagemErroMulti"></p>
+        <p class="erro" id="mensagemErroMulti"></p>
         <input type="text" id="multiChannels">
-        <button id="multiBotao">
-            >>
-        </button>
+        <br>
+        <button id="multiBotao"> >> </button>
     </div>
 
     <br>
