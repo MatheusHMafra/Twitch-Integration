@@ -40,7 +40,7 @@ if (!channel) {
     mainElement.innerHTML = `Canal não encontrado`;
 }
 
-// Se tiver &count=false na url, não mostrar o contador de pessoas
+// Se tiver &count na url, não mostrar o contador de pessoas
 if (!window.location.href.includes('&count')) {
     countElement.remove();
     usersElement.remove();
